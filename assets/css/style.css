@@ -1157,26 +1157,39 @@ main > section:last-of-type {
 /* Carrousel photos sur la page À propos */
 .about-carousel {
   border-bottom: 1px solid var(--border-subtle);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   padding-block: 2.5rem;
+  width: 100%;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+  isolation: isolate;
 }
 
 .about-carousel-track {
   display: flex;
   gap: 16px;
+  width: max-content;
 }
 
 .about-carousel-item {
-  flex: 0 0 auto;
+  flex: 0 0 260px;
+  width: 260px;
   min-width: 260px;
+  max-width: 260px;
   margin: 0;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .about-carousel-item img {
   display: block;
-  width: 100%;
+  width: 260px;
   height: 260px;
+  min-width: 260px;
+  max-width: 260px;
   object-fit: cover;
+  object-position: center center;
 }
 
 /* Overlay visible uniquement pendant les transitions Barba (sans transition pour éviter le flash) */
