@@ -417,22 +417,51 @@ function updateCarouselRafState() {
   if (carouselRafActive && !wasActive) carouselTime = performance.now();
 }
 
-const carouselSection = document.querySelector(".carousel-section");
-const aboutCarouselSection = document.querySelector(".about-carousel");
-if (carouselSection || aboutCarouselSection) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.target === carouselSection) carouselVisible = entry.isIntersecting;
-        else if (entry.target === aboutCarouselSection) aboutCarouselVisible = entry.isIntersecting;
-      });
-      updateCarouselRafState();
-    },
-    { threshold: 0.1 }
-  );
-  if (carouselSection) observer.observe(carouselSection);
-  if (aboutCarouselSection) observer.observe(aboutCarouselSection);
+let carouselObserver = null;
+let observedCarouselSections = [];
+
+function setupCarouselObserver() {
+  const carouselSection = document.querySelector(".carousel-section");
+  const aboutCarouselSection = document.querySelector(".about-carousel");
+
+  if (carouselObserver) {
+    observedCarouselSections.forEach((el) => {
+      if (el && el.isConnected) carouselObserver.unobserve(el);
+    });
+    observedCarouselSections = [];
+  }
+
+  carouselVisible = false;
+  aboutCarouselVisible = false;
+  updateCarouselRafState();
+
+  if (!carouselSection && !aboutCarouselSection) return;
+
+  if (!carouselObserver) {
+    carouselObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target;
+          if (el?.classList?.contains("carousel-section")) carouselVisible = entry.isIntersecting;
+          else if (el?.classList?.contains("about-carousel")) aboutCarouselVisible = entry.isIntersecting;
+        });
+        updateCarouselRafState();
+      },
+      { threshold: 0.1 }
+    );
+  }
+
+  if (carouselSection) {
+    carouselObserver.observe(carouselSection);
+    observedCarouselSections.push(carouselSection);
+  }
+  if (aboutCarouselSection) {
+    carouselObserver.observe(aboutCarouselSection);
+    observedCarouselSections.push(aboutCarouselSection);
+  }
 }
+
+setupCarouselObserver();
 requestAnimationFrame(onRaf);
 
 function pageEnter(container) {
@@ -627,6 +656,8 @@ barba.init({
       currentNamespace = ns;
       setLayoutForNamespace(ns);
       lenis.scrollTo(0, { immediate: true });
+
+      setupCarouselObserver();
 
       // Décaler updateNavbarAtTop pour que Lenis/DOM ait le temps de se mettre à jour après la transition
       requestAnimationFrame(() => {

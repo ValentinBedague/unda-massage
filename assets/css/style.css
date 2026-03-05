@@ -869,11 +869,20 @@ body.burger-menu-open .site-header {
   border-top: 1px solid var(--border-subtle);
 }
 
+.massages-banner {
+  position: relative;
+}
+
 .massages-banner img {
   width: 100%;
   height: 80vh;
   display: block;
   object-fit: cover;
+}
+
+/* Titre overlay sur la bannière (visible en responsive uniquement) */
+.massages-hero-overlay {
+  display: none;
 }
 
 /* Section deux photos pleine largeur, même hauteur que la bannière */
@@ -1648,7 +1657,7 @@ main {
     display: block;
     position: absolute;
     left: 1.75rem;
-    bottom: 1.75rem;
+    bottom: 6rem;
     right: 1.75rem;
     margin: 0;
     text-align: left;
@@ -1731,6 +1740,21 @@ main {
     object-fit: cover;
   }
 
+  main:has(.massages-banner) .massages-hero-overlay {
+    display: block;
+    position: absolute;
+    left: 1.75rem;
+    bottom: 6rem;
+    right: 1.75rem;
+    margin: 0;
+    text-align: left;
+    color: var(--accent);
+    font-family: var(--font-heading);
+    font-size: 80px;
+    letter-spacing: -0.03em;
+    z-index: 1;
+  }
+
   .massages-sportif-topline,
   .massages-sportif-bottomline {
     display: none;
@@ -1772,15 +1796,27 @@ main {
     padding-inline: 2rem;
   }
 
-  .hero-copy .hero-kicker,
+  .hero-copy .hero-kicker {
+    display: none;
+  }
+
   .hero-copy .hero-text {
     color: var(--bg);
+    text-align: center;
   }
 
   .hero-copy .hero-title {
     color: var(--accent);
     font-size: clamp(3rem, 9vw, 72px);
     letter-spacing: 0.04em;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-copy {
+    width: 100%;
+    text-align: center;
   }
 
   .hero .hero-cta {
@@ -1817,6 +1853,15 @@ main {
 
   .intro-text {
     text-align: left;
+  }
+
+  /* Réduire l'écart carousel / "Et si tu offrais..." */
+  .carousel-section {
+    padding-bottom: 1rem;
+  }
+
+  body:not(.is-subpage) .intro-section {
+    padding-top: 3rem;
   }
 
   /* Presentation : colonnes empilées, photo puis textes à gauche */
