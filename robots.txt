@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
-Disallow: /mentions-legales.html
-Disallow: /politique-confidentialite.html
+Disallow: /mentions-legales
+Disallow: /mentions-legales/
+Disallow: /politique-confidentialite
+Disallow: /politique-confidentialite/
 
 Sitemap: https://undamassage.fr/sitemap.xml

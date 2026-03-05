@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    { "source": "/a-propos", "destination": "/a-propos.html" },
+    { "source": "/a-propos/", "destination": "/a-propos.html" },
+    { "source": "/massages", "destination": "/massages.html" },
+    { "source": "/massages/", "destination": "/massages.html" },
+    { "source": "/reserver", "destination": "/reserver.html" },
+    { "source": "/reserver/", "destination": "/reserver.html" },
+    { "source": "/politique-confidentialite", "destination": "/politique-confidentialite.html" },
+    { "source": "/politique-confidentialite/", "destination": "/politique-confidentialite.html" },
+    { "source": "/mentions-legales", "destination": "/mentions-legales.html" },
+    { "source": "/mentions-legales/", "destination": "/mentions-legales.html" }
+  ]
+}

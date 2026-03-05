@@ -6,17 +6,17 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://undamassage.fr/massages.html</loc>
+    <loc>https://undamassage.fr/massages</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://undamassage.fr/a-propos.html</loc>
+    <loc>https://undamassage.fr/a-propos</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://undamassage.fr/reserver.html</loc>
+    <loc>https://undamassage.fr/reserver</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

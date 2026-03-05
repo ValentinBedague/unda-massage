@@ -91,8 +91,8 @@ function ensureSideNav() {
     sideNav.setAttribute("aria-label", "Navigation principale");
     sideNav.innerHTML = `
       <div class="side-nav-inner">
-        <a href="a-propos.html" class="side-nav-link">À propos</a>
-        <a href="massages.html" class="side-nav-link">Massages</a>
+        <a href="/a-propos" class="side-nav-link">À propos</a>
+        <a href="/massages" class="side-nav-link">Massages</a>
       </div>
     `;
 
@@ -106,10 +106,10 @@ function setActiveSideNavLink(ns) {
   if (!sideNav) return;
 
   const nsToHref = {
-    "a-propos": "a-propos.html",
-    massages: "massages.html",
-    politique: "politique-confidentialite.html",
-    mentions: "mentions-legales.html",
+    "a-propos": "/a-propos",
+    massages: "/massages",
+    politique: "/politique-confidentialite",
+    mentions: "/mentions-legales",
   };
 
   const href = nsToHref[ns];
@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!a || a.target === "_blank") return;
       const href = (a.getAttribute("href") || "").split("#")[0].toLowerCase();
       if (href.startsWith("http") || href.startsWith("mailto:") || !href) return;
-      if (href.endsWith(".html") || href === "/" || href === "" || href === "index.html") {
+      if (href.endsWith(".html") || href === "/" || href === "" || href === "index.html" || (href.startsWith("/") && !href.includes("."))) {
         document.body.classList.add("is-barba-transitioning");
         if (transitionCleanupId) clearTimeout(transitionCleanupId);
         transitionCleanupId = setTimeout(() => {
